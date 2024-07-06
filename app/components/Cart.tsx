@@ -19,9 +19,11 @@ const Cart = () => {
       </div>
       <br />
       <div>Cart products:</div>
-      {cartQuery.data?.products.map(product => (
-        <div key={product}>{product}</div>
-      ))}
+      {cartQuery.data
+        ? cartQuery.data.products.map(product => <div key={product}>{product}</div>)
+        : cartQuery.isLoading
+        ? 'Loading products...'
+        : 'No user found!'}
     </div>
   );
 };
