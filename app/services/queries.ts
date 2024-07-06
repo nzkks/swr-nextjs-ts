@@ -7,5 +7,7 @@ export function useUser() {
 }
 
 export function useCart() {
-  return useSWR<Cart>('/cart');
+  const { data: user } = useUser();
+
+  return useSWR<Cart>(user ? '/cart' : null);
 }
