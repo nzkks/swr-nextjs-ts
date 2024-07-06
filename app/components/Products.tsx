@@ -2,12 +2,13 @@
 
 import { ChangeEvent, useState } from 'react';
 
-import { axiosInstance } from '../services/fetcher';
+// import { axiosInstance } from '../services/fetcher';
 import { useProducts } from '../services/queries';
+import { useCreateProduct } from '../services/mutation';
 
 const Products = () => {
   const { data: products, mutate } = useProducts();
-
+  const { trigger, isMutating } = useCreateProduct();
   const [inputValue, setInputValue] = useState('');
 
   const handleUpdateInputValue = (event: ChangeEvent<HTMLInputElement>) => {
@@ -15,8 +16,9 @@ const Products = () => {
   };
 
   const handleCreateProduct = async () => {
-    await axiosInstance.post('/products', { name: inputValue });
-    mutate(); // NOT a preferred way to mutate. But this does refresh the data.
+    // await axiosInstance.post('/products', { name: inputValue });
+    // mutate(); // NOT a preferred way to mutate. But this does refresh the data.
+    trigger({ name: inputValue });
     setInputValue('');
   };
 
