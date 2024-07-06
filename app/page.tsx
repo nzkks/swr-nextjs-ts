@@ -1,9 +1,11 @@
-import OldWay from './components/OldWay';
+// import OldWay from './components/OldWay';
+import Posts from './components/Posts';
 
 export default function Home() {
   return (
     <div>
-      <OldWay />
+      {/* <OldWay /> */}
+      <Posts />
     </div>
   );
 }
