@@ -2,7 +2,6 @@
 
 import { ChangeEvent, useState } from 'react';
 
-// import { axiosInstance } from '../services/fetcher';
 import { useProducts } from '../services/queries';
 import { useCreateProduct } from '../services/mutation';
 
@@ -16,9 +15,14 @@ const Products = () => {
   };
 
   const handleCreateProduct = async () => {
-    // await axiosInstance.post('/products', { name: inputValue });
-    // mutate(); // NOT a preferred way to mutate. But this does refresh the data.
-    trigger({ name: inputValue });
+    trigger(
+      { name: inputValue },
+      {
+        // optimisticData - data to immediately update the client cache, or a function that receives current data and returns the new client cache data, usually used in optimistic UI.
+        // Simply, when triggering the mutation, immediately show the new data while creating the new data in the backend and refresh the data in the frontend.
+        optimisticData: products && [...products, { name: inputValue }],
+      }
+    );
     setInputValue('');
   };
 
