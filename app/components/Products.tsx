@@ -6,6 +6,8 @@ import { axiosInstance } from '../services/fetcher';
 import { useProducts } from '../services/queries';
 
 const Products = () => {
+  const { data: products, mutate } = useProducts();
+
   const [inputValue, setInputValue] = useState('');
 
   const handleUpdateInputValue = (event: ChangeEvent<HTMLInputElement>) => {
@@ -14,14 +16,9 @@ const Products = () => {
 
   const handleCreateProduct = async () => {
     await axiosInstance.post('/products', { name: inputValue });
-
+    mutate(); // NOT a preferred way to mutate. But this does refresh the data.
     setInputValue('');
   };
-
-  const productQuery = useProducts();
-
-  if (productQuery.isLoading) return <div>Loading...</div>;
-  if (productQuery.error) return <div>Error</div>;
 
   return (
     <div>
@@ -33,7 +30,7 @@ const Products = () => {
 
       <p>All Products:</p>
       <ul>
-        {productQuery.data?.map(product => (
+        {products?.map(product => (
           <li key={product.id}>{product.name}</li>
         ))}
       </ul>
