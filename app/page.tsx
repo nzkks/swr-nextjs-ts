@@ -1,3 +1,9 @@
+import OldWay from './components/OldWay';
+
 export default function Home() {
-  return <div>Hello</div>;
+  return (
+    <div>
+      <OldWay />
+    </div>
+  );
 }
