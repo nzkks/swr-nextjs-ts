@@ -6,7 +6,7 @@ import { useProducts } from '../services/queries';
 import { useCreateProduct } from '../services/mutation';
 
 const Products = () => {
-  const { data: products, mutate } = useProducts();
+  const { data: products, isValidating } = useProducts();
   const { trigger, isMutating } = useCreateProduct();
   const [inputValue, setInputValue] = useState('');
 
@@ -34,7 +34,9 @@ const Products = () => {
       <div>
         <h4>Create Products</h4>
         <input value={inputValue} onChange={handleUpdateInputValue} placeholder="Product name" />
-        <button onClick={handleCreateProduct}>Create</button>
+        <button onClick={handleCreateProduct} disabled={isMutating || isValidating}>
+          {isMutating || isValidating ? 'Creating...' : 'Create'}
+        </button>
       </div>
 
       <p>All Products:</p>
