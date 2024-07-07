@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 
-import { Cart, Post, Product, User } from '../types';
+import { Cart, Product, Todo, User } from '../types';
 import { logger } from '../utils/logger';
 
 export function useUser() {
@@ -19,4 +19,8 @@ export function useProducts() {
 
 export function usePosts(pageIndex: number) {
   return useSWR(`/posts?_per_page=3&_page=${pageIndex}`);
+}
+
+export function useTodos() {
+  return useSWR<Todo[]>('/todos');
 }
