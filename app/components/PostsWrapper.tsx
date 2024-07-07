@@ -15,8 +15,12 @@ const PostsWrapper = () => {
         <Posts pageIndex={pageIndex + 1} />
       </div>
 
-      <button onClick={() => setPageIndex(pageIndex - 1)}>Prev</button>
-      <button onClick={() => setPageIndex(pageIndex + 1)}>Next</button>
+      <button onClick={() => setPageIndex(pageIndex - 1)} disabled={pageIndex === 1}>
+        Prev
+      </button>
+      <button onClick={() => setPageIndex(pageIndex + 1)} disabled={pageIndex === 3}>
+        Next
+      </button>
     </>
   );
 };
