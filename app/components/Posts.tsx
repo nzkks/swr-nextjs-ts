@@ -20,8 +20,12 @@ const Posts = ({ pageIndex, setPageIndex }: PostsProps) => {
         ))}
       </ul>
 
-      <button onClick={() => setPageIndex(pageIndex - 1)}>Prev</button>
-      <button onClick={() => setPageIndex(pageIndex + 1)}>Next</button>
+      <button onClick={() => setPageIndex(pageIndex - 1)} disabled={data.prev === null}>
+        Prev
+      </button>
+      <button onClick={() => setPageIndex(pageIndex + 1)} disabled={data.next === null}>
+        Next
+      </button>
     </>
   );
 };
