@@ -1,13 +1,13 @@
 // import OldWay from './components/OldWay';
 import Cart from './components/Cart';
-import Posts from './components/Posts';
+import PostsWrapper from './components/PostsWrapper';
 import Products from './components/Products';
 
 export default function Home() {
   return (
     <div>
       {/* <OldWay /> */}
-      <Posts />
+      <PostsWrapper />
       <Products />
       <Cart />
     </div>
