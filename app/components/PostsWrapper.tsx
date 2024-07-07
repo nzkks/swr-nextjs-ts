@@ -9,13 +9,10 @@ const PostsWrapper = () => {
   return (
     <>
       <h3>Posts</h3>
-      <Posts pageIndex={pageIndex} />
+      <Posts pageIndex={pageIndex} setPageIndex={setPageIndex} />
       <div style={{ display: 'none' }}>
-        <Posts pageIndex={pageIndex + 1} />
+        <Posts pageIndex={pageIndex + 1} setPageIndex={setPageIndex} />
       </div>
-
-      <button onClick={() => setPageIndex(pageIndex - 1)}>Prev</button>
-      <button onClick={() => setPageIndex(pageIndex + 1)}>Next</button>
     </>
   );
 };

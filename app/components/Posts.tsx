@@ -1,18 +1,28 @@
 import { usePosts } from '../services/queries';
 import { Post } from '../types';
 
-const Posts = ({ pageIndex }: { pageIndex: number }) => {
+type PostsProps = {
+  pageIndex: number;
+  setPageIndex: (pageIndex: number) => void;
+};
+
+const Posts = ({ pageIndex, setPageIndex }: PostsProps) => {
   const { data, error, isLoading } = usePosts(pageIndex);
 
   if (error) return <div>Failed to load</div>;
   if (isLoading) return <div>Loading...</div>;
 
   return (
-    <ul>
-      {data.data?.map((post: Post) => (
-        <li key={post.id}>{post.title}</li>
-      ))}
-    </ul>
+    <>
+      <ul>
+        {data.data?.map((post: Post) => (
+          <li key={post.id}>{post.title}</li>
+        ))}
+      </ul>
+
+      <button onClick={() => setPageIndex(pageIndex - 1)}>Prev</button>
+      <button onClick={() => setPageIndex(pageIndex + 1)}>Next</button>
+    </>
   );
 };
 
