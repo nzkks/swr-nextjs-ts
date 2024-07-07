@@ -1,7 +1,7 @@
 import { usePosts } from '../services/queries';
 
-const Posts = () => {
-  const { data, error, isLoading } = usePosts();
+const Posts = ({ pageIndex }: { pageIndex: number }) => {
+  const { data, error, isLoading } = usePosts(pageIndex);
 
   if (error) return <div>Failed to load</div>;
   if (isLoading) return <div>Loading...</div>;

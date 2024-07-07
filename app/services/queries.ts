@@ -17,6 +17,6 @@ export function useProducts() {
   return useSWR<Product[]>('/products', { use: [logger] });
 }
 
-export function usePosts() {
-  return useSWR<Post[]>('/posts');
+export function usePosts(pageIndex: number) {
+  return useSWR<Post[]>(`/posts?_limit=3&_page=${pageIndex}`);
 }
