@@ -1,6 +1,7 @@
 import useSWR from 'swr';
 
 import { Cart, Product, User } from '../types';
+import { logger } from '../utils/logger';
 
 export function useUser() {
   return useSWR<User>('/user');
@@ -13,5 +14,5 @@ export function useCart() {
 }
 
 export function useProducts() {
-  return useSWR<Product[]>('/products');
+  return useSWR<Product[]>('/products', { use: [logger] });
 }
