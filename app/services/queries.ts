@@ -18,5 +18,5 @@ export function useProducts() {
 }
 
 export function usePosts(pageIndex: number) {
-  return useSWR<Post[]>(`/posts?_limit=3&_page=${pageIndex}`);
+  return useSWR(`/posts?_per_page=3&_page=${pageIndex}`);
 }

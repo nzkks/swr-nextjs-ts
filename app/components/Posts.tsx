@@ -1,4 +1,5 @@
 import { usePosts } from '../services/queries';
+import { Post } from '../types';
 
 const Posts = ({ pageIndex }: { pageIndex: number }) => {
   const { data, error, isLoading } = usePosts(pageIndex);
@@ -8,7 +9,7 @@ const Posts = ({ pageIndex }: { pageIndex: number }) => {
 
   return (
     <ul>
-      {data?.map(post => (
+      {data.data?.map((post: Post) => (
         <li key={post.id}>{post.title}</li>
       ))}
     </ul>
