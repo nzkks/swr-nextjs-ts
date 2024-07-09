@@ -4,7 +4,7 @@ import { useTodos } from '../services/queries';
 import { Todo } from '../types';
 
 const Todos = () => {
-  const { data, error, isLoading } = useTodos();
+  const { data, error, isLoading, size, setSize } = useTodos();
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
@@ -15,11 +15,11 @@ const Todos = () => {
     <div>
       <h3>Todos</h3>
 
-      <ul>
-        {data.map((todo: Todo) => (
-          <li key={todo.id}>{todo.title}</li>
-        ))}
-      </ul>
+      <div>
+        {data.map(todos => todos && todos.length && todos.map((todo: Todo) => <div key={todo.id}>{todo.title}</div>))}
+
+        <button onClick={() => setSize(size + 1)}>Load more</button>
+      </div>
     </div>
   );
 };

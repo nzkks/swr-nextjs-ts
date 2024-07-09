@@ -1,4 +1,5 @@
 import useSWR from 'swr';
+import useSWRInfinite, { SWRInfiniteKeyLoader } from 'swr/infinite';
 
 import { Cart, Product, Todo, User } from '../types';
 import { logger } from '../utils/logger';
@@ -22,5 +23,12 @@ export function usePosts(pageIndex: number) {
 }
 
 export function useTodos() {
-  return useSWR<Todo[]>('/todos');
+  const getKey: SWRInfiniteKeyLoader = (index: number, previousPageData: Todo[]) => {
+    if (previousPageData && !previousPageData.length) return null;
+
+    const url = `/todos?_page=${index + 1}&_limit=2`;
+    return url;
+  };
+
+  return useSWRInfinite<Todo[]>(getKey);
 }
