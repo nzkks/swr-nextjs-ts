@@ -26,7 +26,7 @@ export function useTodos() {
   const getKey: SWRInfiniteKeyLoader = (index: number, previousPageData: Todo[]) => {
     if (previousPageData && !previousPageData.length) return null;
 
-    const url = `/todos?_page=${index + 1}&_limit=2`;
+    const url = `https://jsonplaceholder.typicode.com/todos?_page=${index + 1}&_limit=2`;
     return url;
   };
 
